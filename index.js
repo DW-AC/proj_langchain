@@ -1,25 +1,21 @@
-import { CSVLoader } from "@langchain/community/document_loaders/fs/csv";
-import axios from "axios";
-import fs from "fs/promises";
-import path from "path";
+import { GoogleSheetsLoader } from "./google_sheets_loader.js";
 
-const filePath = path.resolve("temp.csv");
-
-async function loadCSVFromGoogleSheet(url, filePath) {
+async function main() {
   try {
-    const response = await axios.get(url);
-    await fs.writeFile(filePath, response.data);
-    const loader = new CSVLoader(filePath);
+    const loader = new GoogleSheetsLoader({
+      spreadsheetId: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+      range: "A1:F", // Adjust the range as needed
+    });
+
     const docs = await loader.load();
     console.log(docs);
-    return docs;
   } catch (error) {
-    console.error("Error loading CSV from Google Sheet:", error);
-    return [];
+    console.error(
+      "Error: Could not load documents from Google Sheets.",
+      "Please ensure you have a valid `credentials.json` file and that the Google Sheets API is enabled for your project.",
+      error.message
+    );
   }
 }
 
-// A public Google Sheet for testing purposes.
-const googleSheetUrl =
-  "https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/export?format=csv";
-loadCSVFromGoogleSheet(googleSheetUrl, filePath);
+main();
