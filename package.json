@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DW-AC/proj_langchain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/DW-AC/proj_langchain/issues"
+  },
+  "homepage": "https://github.com/DW-AC/proj_langchain#readme",
+  "dependencies": {
+    "@langchain/community": "^0.3.57",
+    "axios": "^1.12.2",
+    "d3-dsv": "^2.0.0",
+    "langchain": "^0.3.36"
+  }
+}
